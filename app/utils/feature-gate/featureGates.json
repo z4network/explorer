@@ -158,7 +158,7 @@
     "simd": "133",
     "version": "v2.1.6",
     "testnetActivationEpoch": 760,
-    "devnetActivationEpoch": null,
+    "devnetActivationEpoch": 853,
     "mainnetActivationEpoch": null,
     "title": "GetEpochStake",
     "description": "Add a new syscall to get the epoch stake",
