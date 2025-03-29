@@ -290,7 +290,7 @@
     "simd": "0207",
     "version": "v2.1.8",
     "testnetActivationEpoch": 764,
-    "devnetActivationEpoch": null,
+    "devnetActivationEpoch": 857,
     "mainnetActivationEpoch": null,
     "title": "Raise Block Limits to 50M CUs",
     "description": null,
