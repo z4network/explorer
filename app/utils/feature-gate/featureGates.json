@@ -159,7 +159,7 @@
     "version": "v2.1.6",
     "testnetActivationEpoch": 760,
     "devnetActivationEpoch": 853,
-    "mainnetActivationEpoch": null,
+    "mainnetActivationEpoch": 767,
     "title": "GetEpochStake",
     "description": "Add a new syscall to get the epoch stake",
     "simd_link": "https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0133-syscall-get-epoch-stake.md"
