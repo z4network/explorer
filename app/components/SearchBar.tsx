@@ -79,20 +79,27 @@ export function SearchBar() {
     const Control = useMemo(
         () =>
             function ControlSubstitute({ children, ...props }: ControlProps<SearchElement, false>) {
-                const clearHandler = useCallback((e: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setSearch('');
-                    selectRef.current?.clearValue();
-                    selectRef.current?.blur();
-                }, []);
+                const clearHandler = useCallback(
+                    (e: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent> | React.TouchEvent<HTMLDivElement>) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setSearch('');
+                        selectRef.current?.clearValue();
+                        selectRef.current?.blur();
+                    },
+                    []
+                );
                 const hasValue = Boolean(selectRef.current?.inputRef?.value);
 
                 return (
                     <components.Control {...props}>
                         <Search className="me-3" size={15} />
                         {children}
-                        {hasValue ? <ClearIndicator onClick={clearHandler} onTouchStart={clearHandler} /> : <KeyIndicator />}
+                        {hasValue ? (
+                            <ClearIndicator onClick={clearHandler} onTouchStart={clearHandler} />
+                        ) : (
+                            <KeyIndicator />
+                        )}
                     </components.Control>
                 );
             },
@@ -437,7 +444,13 @@ function KeyIndicator() {
     return <div className="key-indicator">/</div>;
 }
 
-function ClearIndicator({ onClick, onTouchStart }: { onClick: MouseEventHandler<HTMLDivElement>, onTouchStart: TouchEventHandler<HTMLDivElement> }) {
+function ClearIndicator({
+    onClick,
+    onTouchStart,
+}: {
+    onClick: MouseEventHandler<HTMLDivElement>;
+    onTouchStart: TouchEventHandler<HTMLDivElement>;
+}) {
     return (
         <div className="clear-indicator" onClick={onClick} onTouchStart={onTouchStart}>
             <X size={16} />

@@ -13,6 +13,7 @@ import { displayTimestamp, displayTimestampWithoutDate } from '@utils/date';
 import { abbreviatedNumber, normalizeTokenAmount } from '@utils/index';
 import { addressLabel } from '@utils/tx';
 import { MintAccountInfo, MultisigAccountInfo, TokenAccount, TokenAccountInfo } from '@validators/accounts/token';
+import { TokenExtensionType } from '@validators/accounts/token-extension';
 import {
     ConfidentialTransferAccount,
     ConfidentialTransferFeeAmount,
@@ -122,8 +123,6 @@ function FungibleTokenMintAccountCard({
     tokenInfo?: FullLegacyTokenInfo;
 }) {
     const fetchInfo = useFetchAccountInfo();
-    const { clusterInfo } = useCluster();
-    const epoch = clusterInfo?.epochInfo.epoch;
     const refresh = () => fetchInfo(account.pubkey, 'parsed');
 
     const bridgeContractAddress = getEthAddress(tokenInfo?.extensions?.bridgeContract);
@@ -288,9 +287,6 @@ function FungibleTokenMintAccountCard({
                             </td>
                         </tr>
                     )}
-                    {mintExtensions?.map(extension =>
-                        TokenExtensionRows(extension, epoch, mintInfo.decimals, tokenInfo?.symbol)
-                    )}
                 </TableCardBody>
             </div>
         </>
@@ -407,7 +403,8 @@ function TokenAccountCard({ account, info }: { account: Account; info: TokenAcco
     const { cluster, clusterInfo, url } = useCluster();
     const epoch = clusterInfo?.epochInfo.epoch;
     const label = addressLabel(account.pubkey.toBase58(), cluster);
-    const swrKey = useMemo(() => getTokenInfoSwrKey(info.mint.toString(), cluster, url), [cluster, url]);
+    const swrKey = useMemo(() => getTokenInfoSwrKey(info.mint.toString(), cluster, url), [cluster, info.mint, url]);
+
     const { data: tokenInfo } = useSWR(swrKey, fetchTokenInfo);
     const [symbol, setSymbol] = useState<string | undefined>(undefined);
     const accountExtensions = info.extensions?.slice();
@@ -428,7 +425,7 @@ function TokenAccountCard({ account, info }: { account: Account; info: TokenAcco
         } else {
             setSymbol(tokenInfo?.symbol);
         }
-    }, [tokenInfo]);
+    }, [tokenInfo, info]);
 
     return (
         <div className="card">
@@ -441,7 +438,6 @@ function TokenAccountCard({ account, info }: { account: Account; info: TokenAcco
                     Refresh
                 </button>
             </div>
-
             <TableCardBody>
                 <tr>
                     <td>Address</td>
@@ -518,7 +514,7 @@ function TokenAccountCard({ account, info }: { account: Account; info: TokenAcco
                     </>
                 )}
                 {accountExtensions?.map(extension =>
-                    TokenExtensionRows(extension, epoch, info.tokenAmount.decimals, symbol)
+                    TokenExtensionRow(extension, epoch, info.tokenAmount.decimals, symbol)
                 )}
             </TableCardBody>
         </div>
@@ -574,7 +570,7 @@ function MultisigAccountCard({ account, info }: { account: Account; info: Multis
 
 function cmpExtension(a: TokenExtension, b: TokenExtension) {
     // be sure that extensions with a header row always come later
-    const sortedExtensionTypes = [
+    const sortedExtensionTypes: TokenExtensionType[] = [
         'transferFeeAmount',
         'mintCloseAuthority',
         'defaultAccountState',
@@ -605,11 +601,24 @@ function cmpExtension(a: TokenExtension, b: TokenExtension) {
     return sortedExtensionTypes.indexOf(a.extension) - sortedExtensionTypes.indexOf(b.extension);
 }
 
-function TokenExtensionRows(
+function HHeader({ name }: { name: string }) {
+    return (
+        <tr>
+            <h4>{name}</h4>
+        </tr>
+    );
+}
+
+/* Do not move component to keep commit history.
+    NOTE: Needs to be separated at closest refactoring
+    Also check whether it is needed to keep it as function and not a proper React component
+*/
+export function TokenExtensionRow(
     tokenExtension: TokenExtension,
     maybeEpoch: bigint | undefined,
     decimals: number,
-    symbol: string | undefined
+    symbol: string | undefined,
+    headerStyle: 'header' | 'omit' = 'header'
 ) {
     const epoch = maybeEpoch || 0n; // fallback to 0 if not provided
     switch (tokenExtension.extension) {
@@ -645,9 +654,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, TransferFeeConfig);
             return (
                 <>
-                    <tr>
-                        <h4>Transfer Fee Config</h4>
-                    </tr>
+                    {headerStyle == 'header' ? <HHeader name="Transfer Fee Config" /> : null}
                     {extension.transferFeeConfigAuthority && (
                         <tr>
                             <td>Transfer Fee Authority</td>
@@ -723,9 +730,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, ConfidentialTransferMint);
             return (
                 <>
-                    <tr>
-                        <h4>Confidential Transfer</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Confidential Transfer" /> : null}
                     {extension.authority && (
                         <tr>
                             <td>Authority</td>
@@ -751,9 +756,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, ConfidentialTransferFeeConfig);
             return (
                 <>
-                    <tr>
-                        <h4>Confidential Transfer Fee</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Confidential Transfer Fee" /> : null}
                     {extension.authority && (
                         <tr>
                             <td>Authority</td>
@@ -800,9 +803,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, InterestBearingConfig);
             return (
                 <>
-                    <tr>
-                        <h4>Interest-Bearing</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Interest-Bearing" /> : null}
                     {extension.rateAuthority && (
                         <tr>
                             <td>Authority</td>
@@ -941,9 +942,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, TokenMetadata);
             return (
                 <>
-                    <tr>
-                        <h4>Metadata</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Metadata" /> : null}
                     <tr>
                         <td>Mint</td>
                         <td className="text-lg-end">
@@ -1008,9 +1007,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, ConfidentialTransferAccount);
             return (
                 <>
-                    <tr>
-                        <h4>Confidential Transfer</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Confidential Transfer" /> : null}
                     <tr>
                         <td>Status</td>
                         <td className="text-lg-end">{!extension.approved && 'not '}approved</td>
@@ -1111,9 +1108,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, TokenGroup);
             return (
                 <>
-                    <tr>
-                        <h4>Group</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Group" /> : null}
                     <tr>
                         <td>Mint</td>
                         <td className="text-lg-end">
@@ -1143,9 +1138,7 @@ function TokenExtensionRows(
             const extension = create(tokenExtension.state, TokenGroupMember);
             return (
                 <>
-                    <tr>
-                        <h4>Group Member</h4>
-                    </tr>
+                    {headerStyle === 'header' ? <HHeader name="Group Member" /> : null}
                     <tr>
                         <td>Mint</td>
                         <td className="text-lg-end">
