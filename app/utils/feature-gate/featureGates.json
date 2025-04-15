@@ -361,5 +361,5 @@
     "title": "Remove accounts executable flag checks",
     "description": null,
     "simd_link": "https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0162-remove-accounts-executable-flag-checks.md"
-  },
+  }
 ]
