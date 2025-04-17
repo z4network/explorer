@@ -46,6 +46,7 @@ import useSWR from 'swr';
 
 import { FullLegacyTokenInfo, getTokenInfo, getTokenInfoSwrKey } from '@/app/utils/token-info';
 
+import { TokenExtensionsStatusRow } from './token-extensions/TokenExtensionsStatusRow';
 import { UnknownAccountCard } from './UnknownAccountCard';
 
 const getEthAddress = (link?: string) => {
@@ -287,6 +288,9 @@ function FungibleTokenMintAccountCard({
                             </td>
                         </tr>
                     )}
+                    {mintExtensions && (
+                        <TokenExtensionsStatusRow address={account.pubkey.toBase58()} extensions={mintExtensions} />
+                    )}
                 </TableCardBody>
             </div>
         </>
@@ -511,6 +515,9 @@ function TokenAccountCard({ account, info }: { account: Account; info: TokenAcco
                             </td>
                         </tr>
                     </>
+                )}
+                {accountExtensions && (
+                    <TokenExtensionsStatusRow address={account.pubkey.toBase58()} extensions={accountExtensions} />
                 )}
             </TableCardBody>
         </div>
