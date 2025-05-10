@@ -106,7 +106,7 @@
     "devnetActivationEpoch": 820,
     "mainnetActivationEpoch": 744,
     "title": "Add new unwritable reserved accounts",
-    "description": "Allow core developers to exclude system programs from write-locking transactions",
+    "description": "Allow core developers to exclude system programs from being write locked by transactions",
     "simd_link": "https://github.com/solana-foundation/solana-improvement-documents/blob/main/proposals/0105-dynamic-reserved-accounts-set.md"
   },
   {
