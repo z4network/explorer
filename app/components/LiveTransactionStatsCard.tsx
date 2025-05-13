@@ -208,7 +208,7 @@ function TpsBarChart({ performanceInfo, series, setSeries }: TpsBarChartProps) {
                 <div id="perf-history" className="mt-3 flex-grow-1" style={{ minHeight: '200px' }}>
                     <Bar data={chartData} options={chartOptions} style={{ height: '100%' }} />
                 </div>
-
+                {/*
                 <div className="text-center text-muted mt-3">
                     <p className="mb-0">
                         For transaction confirmation time statistics, please visit{' '}
@@ -221,6 +221,7 @@ function TpsBarChart({ performanceInfo, series, setSeries }: TpsBarChartProps) {
                         </a>
                     </p>
                 </div>
+                */}
             </div>
         </div>
     );

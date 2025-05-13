@@ -16,7 +16,7 @@ export const CLUSTERS = [Cluster.MainnetBeta, Cluster.Testnet, Cluster.Devnet, C
 export function clusterSlug(cluster: Cluster): string {
     switch (cluster) {
         case Cluster.MainnetBeta:
-            return 'mainnet-beta';
+            return 'mainnet';
         case Cluster.Testnet:
             return 'testnet';
         case Cluster.Devnet:
@@ -29,7 +29,7 @@ export function clusterSlug(cluster: Cluster): string {
 export function clusterName(cluster: Cluster): string {
     switch (cluster) {
         case Cluster.MainnetBeta:
-            return 'Mainnet Beta';
+            return 'Mainnet';
         case Cluster.Testnet:
             return 'Testnet';
         case Cluster.Devnet:
@@ -39,9 +39,9 @@ export function clusterName(cluster: Cluster): string {
     }
 }
 
-export const MAINNET_BETA_URL = 'https://api.mainnet-beta.solana.com';
-export const TESTNET_URL = 'https://api.testnet.solana.com';
-export const DEVNET_URL = 'https://api.devnet.solana.com';
+export const MAINNET_BETA_URL = 'https://api.mainnet.z4scan.com';
+export const TESTNET_URL = 'https://api.testnet.z4scan.com';
+export const DEVNET_URL = 'https://api.devnet.z4scan.com';
 
 export function clusterUrl(cluster: Cluster, customUrl: string): string {
     const modifyUrl = (url: string): string => {

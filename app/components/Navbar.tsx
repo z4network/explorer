@@ -25,7 +25,7 @@ export function Navbar({ children }: INavbarProps) {
         <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container px-4">
                 <Link href={homePath}>
-                    <Image alt="Solana Explorer" height={22} src={Logo} width={214} />
+                    <Image alt="Z4Network Explorer" height={22} src={Logo} width={214} />
                 </Link>
 
                 <button className="navbar-toggler" type="button" onClick={navHandlers.toggle}>
@@ -69,7 +69,7 @@ export function Navbar({ children }: INavbarProps) {
                         <li className="nav-item align-items-center justify-content-center pt-2">
                             <a
                                 aria-label="GitHub Repository"
-                                href="https://github.com/solana-foundation/explorer"
+                                href="https://github.com/z4network/explorer"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="mx-3"

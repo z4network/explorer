@@ -15,9 +15,9 @@ const SearchBar = dynamic(() => import('@components/SearchBar'), {
 });
 
 export const metadata: Metadata = {
-    description: 'Inspect transactions, accounts, blocks, and more on the Solana blockchain',
+    description: 'Inspect transactions, accounts, blocks, and more on the Z4Network blockchain',
     manifest: '/manifest.json',
-    title: 'Explorer | Solana',
+    title: 'Explorer | Z4Network',
 };
 
 export const viewport: Viewport = {
@@ -67,6 +67,71 @@ export default function RootLayout({
                     </ClusterProvider>
                 </ScrollAnchorProvider>
                 {analytics}
+
+                <div className="text-center">
+
+                    <footer>
+                        <div className="container text-center">
+                            <hr />
+                            <div className="row text-start">
+                                {/* About */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline">About</h4>
+                                    <ul className="list-unstyled">
+                                        <li><a href="/about.html" className="text-white text-decoration-none">About Us</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Whitepaper</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Tokenomics</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Compliance */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline">Terms & Policy</h4>
+                                    <ul className="list-unstyled">
+                                        <li><a href="/anti_money_laundering.html" className="text-white text-decoration-none">AML Policy</a></li>
+                                        <li><a href="/privacy_policy.html" className="text-white text-decoration-none">Privacy Policy</a></li>
+                                        <li><a href="/terms_use.html" className="text-white text-decoration-none">Terms of Use</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Ecosystem */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline">Ecosystem</h4>
+                                    <ul className="list-unstyled">
+                                        <li><a href="#" className="text-white text-decoration-none">Z4Wallet</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Z4Exchange</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Z4Pay</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Resources */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline">Resources</h4>
+                                    <ul className="list-unstyled">
+                                        <li><a href="#" className="text-white text-decoration-none">Documents</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Solutions</a></li>
+                                        <li><a href="#" className="text-white text-decoration-none">Developments</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Social Media */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline">Social Media</h4>
+                                    <ul className="list-unstyled">
+                                        <li><a href="https://www.facebook.com/Z4Network" className="text-white text-decoration-none">Facebook</a></li>
+                                        <li><a href="https://t.me/Z4Network" className="text-white text-decoration-none">Telegram</a></li>
+                                        <li><a href="https://x.com/Z4Network" className="text-white text-decoration-none">Twitter</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                    </footer>
+                    Copyright © 2021-2025 Z4Network BlockChain Ltd.<sup>®</sup> <br />All rights reserved.
+                </div>
+
+
+
             </body>
         </html>
     );

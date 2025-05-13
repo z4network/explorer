@@ -1,6 +1,6 @@
 {
-    "short_name": "Solana Explorer",
-    "name": "Inspect transactions, accounts, blocks, and more on the Solana blockchain",
+    "short_name": "Z4network Explorer",
+    "name": "Inspect transactions, accounts, blocks, and more on the Z4Network blockchain",
     "icons": [
         {
             "src": "/icon-192.png",

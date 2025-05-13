@@ -1,14 +1,14 @@
 <p align="center">
-    <img alt="Solana" src="https://i.imgur.com/IKyzQ6T.png" width="250" />
+    <img alt="Solana" src="https://z4scan.com/_next/static/media/dark-explorer-logo.13d12001.svg" width="250" />
 </p>
 
-# Solana Explorer
+# Z4Network Explorer
 
-The Solana Explorer is a web application that allows users to explore the Solana blockchain. It provides a user-friendly interface to view transactions, accounts, blocks, and other on-chain data. The Explorer supports various protocol integrations, allowing users to inspect and understand different types of transactions and instructions on the Solana network.
+The Z4Network Explorer is a web application that allows users to explore the Solana blockchain. It provides a user-friendly interface to view transactions, accounts, blocks, and other on-chain data. The Explorer supports various protocol integrations, allowing users to inspect and understand different types of transactions and instructions on the Solana network.
 
 ## Contributing
 
-We welcome contributions to the Solana Explorer! Before submitting a pull request, please:
+We welcome contributions to the Z4Network Explorer! Before submitting a pull request, please:
 
 1. Read the [CONTRIBUTING.md](CONTRIBUTING.md) guide for detailed information on our contribution process
 2. Ensure your code includes appropriate tests, especially for protocol integrations
