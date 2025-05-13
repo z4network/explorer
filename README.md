@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Solana" src="https://z4scan.com/_next/static/media/dark-explorer-logo.13d12001.svg" width="250" />
+    <img alt="Z4Network" src="https://z4scan.com/_next/static/media/dark-explorer-logo.13d12001.svg" width="250" />
 </p>
 
 # Z4Network Explorer

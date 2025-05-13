@@ -76,7 +76,8 @@ export default function RootLayout({
                             <div className="row text-start">
                                 {/* About */}
                                 <div className="col">
-                                    <h4 className="fw-bold text-decoration-underline">About</h4>
+                                    <h4 className="fw-bold text-decoration-underline" style={{ color: '#46a4f0' }}>About</h4>
+                                    <br />
                                     <ul className="list-unstyled">
                                         <li><a href="/about.html" className="text-white text-decoration-none">About Us</a></li>
                                         <li><a href="#" className="text-white text-decoration-none">Whitepaper</a></li>
@@ -84,19 +85,11 @@ export default function RootLayout({
                                     </ul>
                                 </div>
 
-                                {/* Compliance */}
-                                <div className="col">
-                                    <h4 className="fw-bold text-decoration-underline">Terms & Policy</h4>
-                                    <ul className="list-unstyled">
-                                        <li><a href="/anti_money_laundering.html" className="text-white text-decoration-none">AML Policy</a></li>
-                                        <li><a href="/privacy_policy.html" className="text-white text-decoration-none">Privacy Policy</a></li>
-                                        <li><a href="/terms_use.html" className="text-white text-decoration-none">Terms of Use</a></li>
-                                    </ul>
-                                </div>
 
                                 {/* Ecosystem */}
                                 <div className="col">
-                                    <h4 className="fw-bold text-decoration-underline">Ecosystem</h4>
+                                    <h4 className="fw-bold text-decoration-underline" style={{ color: '#46a4f0' }}>Ecosystem</h4>
+                                    <br />
                                     <ul className="list-unstyled">
                                         <li><a href="#" className="text-white text-decoration-none">Z4Wallet</a></li>
                                         <li><a href="#" className="text-white text-decoration-none">Z4Exchange</a></li>
@@ -106,7 +99,8 @@ export default function RootLayout({
 
                                 {/* Resources */}
                                 <div className="col">
-                                    <h4 className="fw-bold text-decoration-underline">Resources</h4>
+                                    <h4 className="fw-bold text-decoration-underline" style={{ color: '#46a4f0' }}>Resources</h4>
+                                    <br />
                                     <ul className="list-unstyled">
                                         <li><a href="#" className="text-white text-decoration-none">Documents</a></li>
                                         <li><a href="#" className="text-white text-decoration-none">Solutions</a></li>
@@ -116,13 +110,26 @@ export default function RootLayout({
 
                                 {/* Social Media */}
                                 <div className="col">
-                                    <h4 className="fw-bold text-decoration-underline">Social Media</h4>
+                                    <h4 className="fw-bold text-decoration-underline" style={{ color: '#46a4f0' }} >Social Media</h4>
+                                    <br />
                                     <ul className="list-unstyled">
                                         <li><a href="https://www.facebook.com/Z4Network" className="text-white text-decoration-none">Facebook</a></li>
                                         <li><a href="https://t.me/Z4Network" className="text-white text-decoration-none">Telegram</a></li>
                                         <li><a href="https://x.com/Z4Network" className="text-white text-decoration-none">Twitter</a></li>
                                     </ul>
                                 </div>
+
+                                {/* Terms-Policy */}
+                                <div className="col">
+                                    <h4 className="fw-bold text-decoration-underline" style={{ color: '#46a4f0' }}>Terms & Policy</h4>
+                                    <br />
+                                    <ul className="list-unstyled">
+                                        <li><a href="/anti_money_laundering.html" className="text-white text-decoration-none">AML Policy</a></li>
+                                        <li><a href="/privacy_policy.html" className="text-white text-decoration-none">Privacy Policy</a></li>
+                                        <li><a href="/terms_use.html" className="text-white text-decoration-none">Terms of Use</a></li>
+                                    </ul>
+                                </div>
+
                             </div>
                             <hr />
                         </div>

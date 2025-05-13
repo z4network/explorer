@@ -160,10 +160,12 @@ function TpsBarChart({ performanceInfo, series, setSeries }: TpsBarChartProps) {
     const chartData: ChartData<'bar'> = {
         datasets: [
             {
-                backgroundColor: '#00D192',
+               // backgroundColor: '#00D192',
+               backgroundColor: '#46a4f0',
                 borderWidth: 0,
                 data: seriesData.map(val => val || 0),
-                hoverBackgroundColor: '#00D192',
+                // hoverBackgroundColor: '#00D192',
+                hoverBackgroundColor: '#46a4f0',
             },
         ],
         labels: seriesData.map((val, i) => {

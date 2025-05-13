@@ -1,0 +1,11 @@
+Checking for package peerDependency overrides
+ WARN  Unsupported engine: wanted: {"node":"^18.20 || ^20.19"} (current: {"node":"v22.15.0","pnpm":"9.10.0"})
+
+> explorer@0.1.0 start /web/z4scan.com
+> next start
+
+  ▲ Next.js 14.2.25
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 491ms
