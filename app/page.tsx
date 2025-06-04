@@ -7,6 +7,7 @@ import { Slot } from '@components/common/Slot';
 import { TableCardBody } from '@components/common/TableCardBody';
 import { TimestampToggle } from '@components/common/TimestampToggle';
 import { LiveTransactionStatsCard } from '@components/LiveTransactionStatsCard';
+//import { Navbar } from '@components/Navbar';
 import { StatsNotReady } from '@components/StatsNotReady';
 import { useVoteAccounts } from '@providers/accounts/vote-accounts';
 import { useCluster } from '@providers/cluster';
@@ -21,7 +22,13 @@ import { Status, SupplyProvider, useFetchSupply, useSupply } from '@providers/su
 import { ClusterStatus } from '@utils/cluster';
 import { abbreviatedNumber, lamportsToSol, slotsToHumanString } from '@utils/index';
 import { percentage } from '@utils/math';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const SearchBar = dynamic(() => import('@components/SearchBar'), {
+    ssr: false,
+});
+
 
 // import { DeveloperResources } from './components/DeveloperResources';
 // import { UpcomingFeatures } from './utils/feature-gate/UpcomingFeatures';
@@ -31,8 +38,29 @@ export default function Page() {
         <StatsProvider>
             <SupplyProvider>
                 <div className="container mt-4">
-                    <StakingComponent />
+                    <div className="row d-flex">
+                        <div className="col-md-12 d-flex">
+                            <div className="card flex-grow-1">
+                                <SearchBar />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row d-flex">
+                        <div className="col-md-3 d-flex">
+                            <div className="card flex-grow-1">Active Account Holders:</div>
+                        </div>
+                        <div className="col-md-3 d-flex">
+                            <div className="card flex-grow-1">Active Tokens Issued:</div>
+                        </div>
+                        <div className="col-md-3 d-flex">
+                            <div className="card flex-grow-1">Active NFT Holders:</div>
+                        </div>
+                        <div className="col-md-3 d-flex">
+                            <div className="card flex-grow-1">Active RWA Projects:</div>
+                        </div>
+                    </div>
 
+                    <StakingComponent />
                     <div className="row d-flex">
                         <div className="col-md-6 d-flex">
                             <StatsCardBody />
@@ -41,13 +69,22 @@ export default function Page() {
                             <LiveTransactionStatsCard />
                         </div>
                     </div>
-            {/*
+                    <div className="row d-flex">
+                        <div className="col-md-6 d-flex">
+                            <div className="card flex-grow-1">Latest Transactions</div>
+                        </div>
+                        <div className="col-md-6 d-flex">
+                            <div className="card flex-grow-1">Token Dashboard</div>
+                        </div>
+                    </div>
+                    {/*
                     <DeveloperResources />
                     <UpcomingFeatures />
-            */}
+                    */}
                 </div>
             </SupplyProvider>
         </StatsProvider>
+
     );
 }
 

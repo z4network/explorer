@@ -19,6 +19,9 @@ export function Navbar({ children }: INavbarProps) {
     const homePath = useClusterPath({ pathname: '/' });
     const supplyPath = useClusterPath({ pathname: '/supply' });
     const inspectorPath = useClusterPath({ pathname: '/tx/inspector' });
+    const walletPath = useClusterPath({ pathname: '/wallet' });
+    const exchangePath = useClusterPath({ pathname: '/exchange' });
+    const resourcePath = useClusterPath({ pathname: '/resource' });
     const selectedLayoutSegment = useSelectedLayoutSegment();
     const selectedLayoutSegments = useSelectedLayoutSegments();
     return (
@@ -46,6 +49,7 @@ export function Navbar({ children }: INavbarProps) {
                                 Cluster Stats
                             </Link>
                         </li>
+
                         <li className="nav-item">
                             <Link
                                 className={`nav-link${selectedLayoutSegment === 'supply' ? ' active' : ''}`}
@@ -66,6 +70,35 @@ export function Navbar({ children }: INavbarProps) {
                                 Inspector
                             </Link>
                         </li>
+
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link${selectedLayoutSegment === 'wallet' ? ' active' : ''}`}
+                                href={walletPath}
+                            >
+                                Wallet
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link${selectedLayoutSegment === 'exchange' ? ' active' : ''}`}
+                                href={exchangePath}
+                            >
+                                Exchange
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link${selectedLayoutSegment === 'resource' ? ' active' : ''}`}
+                                href={resourcePath}
+                            >
+                                Resources
+                            </Link>
+                        </li>
+
+
                         <li className="nav-item align-items-center justify-content-center pt-2">
                             <a
                                 aria-label="GitHub Repository"

@@ -52,9 +52,15 @@ export default function RootLayout({
                     <ClusterProvider>
                         <ClusterModal />
                         <div className="main-content pb-4">
+                                <div className="container mt-4">
+                                    <Navbar></Navbar>
+                                </div>
+    
+                       {/*
                             <Navbar>
-                                <SearchBar />
+                                <SearchBar /> 
                             </Navbar>
+                        */}   
                             <MessageBanner />
                             <div className="container my-3 d-lg-none">
                                 <SearchBar />
@@ -64,14 +70,13 @@ export default function RootLayout({
                             </div>
                             {children}
                         </div>
+                        
                     </ClusterProvider>
                 </ScrollAnchorProvider>
                 {analytics}
-
                 <div className="text-center">
-
-                    <footer>
-                        <div className="container text-center">
+                <footer>
+                    <div className="container text-center">
                             <hr />
                             <div className="row text-start">
                                 {/* About */}
@@ -136,9 +141,6 @@ export default function RootLayout({
                     </footer>
                     Copyright © 2021-2025 Z4Network BlockChain Ltd.<sup>®</sup> <br />All rights reserved.
                 </div>
-
-
-
             </body>
         </html>
     );
