@@ -98,8 +98,8 @@ export function Navbar({ children }: INavbarProps) {
                             </Link>
                         </li>
 
-
-                        <li className="nav-item align-items-center justify-content-center pt-2">
+                        
+                       {/*} <li className="nav-item align-items-center justify-content-center pt-2">
                             <a
                                 aria-label="GitHub Repository"
                                 href="https://github.com/z4network/explorer"
@@ -117,6 +117,7 @@ export function Navbar({ children }: INavbarProps) {
                                 </svg>
                             </a>
                         </li>
+                        */}
                     </ul>
                 </div>
 
