@@ -10,7 +10,7 @@ import { LiveTransactionStatsCard } from '@components/LiveTransactionStatsCard';
 //import { Navbar } from '@components/Navbar';
 import { StatsNotReady } from '@components/StatsNotReady';
 import { useVoteAccounts } from '@providers/accounts/vote-accounts';
-import { useCluster } from '@providers/cluster';
+import { getAccountCount,useCluster } from '@providers/cluster';
 import { StatsProvider } from '@providers/stats';
 import {
     ClusterStatsStatus,
@@ -23,20 +23,48 @@ import { ClusterStatus } from '@utils/cluster';
 import { abbreviatedNumber, lamportsToSol, slotsToHumanString } from '@utils/index';
 import { percentage } from '@utils/math';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useEffect,useState } from 'react';
+
+import { ActiveAccountHolders } from './components/ActiveAccountHolders';
 
 const SearchBar = dynamic(() => import('@components/SearchBar'), {
     ssr: false,
 });
 
 
-// import { DeveloperResources } from './components/DeveloperResources';
-// import { UpcomingFeatures } from './utils/feature-gate/UpcomingFeatures';
+const SYSTEM_PROGRAM_ID = '11111111111111111111111111111111';
 
+function AccountHoldersContainer() {
+    const [accountCount, setAccountCount] = useState(0);
+
+    useEffect(() => {
+        const fetchAccountCount = async () => {
+            try {
+                const result = await getAccountCount(SYSTEM_PROGRAM_ID);
+                setAccountCount(result.count);
+            } catch (error) {
+                console.error('Error fetching account count:', error);
+                setAccountCount(0);
+            }
+        };
+
+        fetchAccountCount();
+    }, []);
+
+    return (
+        <ActiveAccountHolders 
+            programId={SYSTEM_PROGRAM_ID}
+            accountCount={accountCount}
+        />
+    );
+}
+
+                        
 export default function Page() {
     return (
         <StatsProvider>
             <SupplyProvider>
+                
                 <div className="container mt-4">
                     <div className="row d-flex">
                         <div className="col-md-12 d-flex">
@@ -47,7 +75,7 @@ export default function Page() {
                     </div>
                     <div className="row d-flex">
                         <div className="col-md-3 d-flex">
-                            <div className="card flex-grow-1">Active Account Holders:</div>
+                            <AccountHoldersContainer />
                         </div>
                         <div className="col-md-3 d-flex">
                             <div className="card flex-grow-1">Active Tokens Issued:</div>
@@ -82,6 +110,7 @@ export default function Page() {
                     <UpcomingFeatures />
                     */}
                 </div>
+              
             </SupplyProvider>
         </StatsProvider>
 

@@ -55,12 +55,6 @@ export default function RootLayout({
                                 <div className="container mt-4">
                                     <Navbar></Navbar>
                                 </div>
-    
-                       {/*
-                            <Navbar>
-                                <SearchBar /> 
-                            </Navbar>
-                        */}   
                             <MessageBanner />
                             <div className="container my-3 d-lg-none">
                                 <SearchBar />
@@ -70,10 +64,10 @@ export default function RootLayout({
                             </div>
                             {children}
                         </div>
-                        
                     </ClusterProvider>
                 </ScrollAnchorProvider>
                 {analytics}
+
                 <div className="text-center">
                 <footer>
                     <div className="container text-center">

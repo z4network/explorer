@@ -1,5 +1,6 @@
 'use client';
 
+import { Connection, PublicKey } from '@solana/web3.js';
 import { Cluster, clusterName, ClusterStatus, clusterUrl, DEFAULT_CLUSTER } from '@utils/cluster';
 import { localStorageIsAvailable } from '@utils/local-storage';
 import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -35,7 +36,7 @@ interface State {
     status: ClusterStatus;
 }
 
-const DEFAULT_CUSTOM_URL = 'http://localhost:8899';
+export const DEFAULT_CUSTOM_URL = 'http://localhost:8899';
 
 function clusterReducer(state: State, action: Action): State {
     switch (action.status) {
@@ -202,3 +203,44 @@ export function useClusterModal() {
     }
     return context;
 }
+
+/**
+ * 获取某个 Solana 程序账户的数量（所有 PDA 或数据账户）
+ * @param programIdStr 程序 ID（字符串形式）
+ * @returns 账户数量
+ */
+export async function getAccountCount(programIdStr: string): Promise<{count: number, accounts: any[]}> {
+    const transportUrl = clusterUrl(DEFAULT_CLUSTER, DEFAULT_CUSTOM_URL);
+    const connection = new Connection(transportUrl, 'confirmed');
+
+    try {
+        const programId = new PublicKey(programIdStr);
+
+        // 获取属于该 programId 的所有账户信息（不包含系统账户）
+        const accounts = await connection.getProgramAccounts(programId);
+        
+        // 构建账户详细信息列表
+        const accountsList = accounts.map(account => ({
+            dataLength: account.account.data.length,
+            executable: account.account.executable,
+            lamports: account.account.lamports,
+            owner: account.account.owner.toString(),
+            pubkey: account.pubkey.toString(),
+            rentEpoch: account.account.rentEpoch
+        }));
+        
+        console.log(`Program ${programIdStr} has ${accounts.length} accounts.`);
+        console.log('Accounts list:', JSON.stringify(accountsList, null, 2));
+        
+        return {
+            accounts: accountsList,
+            count: accounts.length
+        };
+    } catch (error) {
+        console.error('获取账户数失败:', error);
+        throw error;
+    }
+}
+
+export { DEFAULT_CLUSTER };
+export  { clusterUrl };
